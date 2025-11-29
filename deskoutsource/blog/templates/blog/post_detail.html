@@ -1,0 +1,26 @@
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ post.meta_title }}">
+<meta property="og:description" content="{{ post.meta_description }}">
+{% if post.featured_image %}
+<meta property="og:image" content="{{ post.featured_image.url }}">
+{% endif %}
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:type" content="article">
+
+
+
+<h1>{{ post.title }}</h1>
+{% if post.featured_image %}
+<img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+{% endif %}
+<div>{{ post.content|safe }}</div>
+
+<div class="post-navigation">
+    {% if prev_post %}
+        <a href="{% url 'blog:blog_detail' prev_post.slug %}">← {{ prev_post.title }}</a>
+    {% endif %}
+
+    {% if next_post %}
+        <a href="{% url 'blog:blog_detail' next_post.slug %}">{{ next_post.title }} →</a>
+    {% endif %}
+</div>

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+ 
+    <script src="{% static 'css/browser@4' %}"></script>
+
+  
+    <meta name="title" content="{{ core_page.meta_title }}">
+    <meta name="description" content="{{ core_page.meta_description }}">
+    <title>{{ core_page.page_title }}</title>
+</head>
+<body class="bg-gray-100">
+    <header>
+        {% if core_page.hero_background %}
+            <div style="background-image: url('{{ core_page.hero_background.url }}');">
+                <h1>{{ core_page.page_title }}</h1>
+                <p>{{ core_page.hero_description }}</p>
+            </div>
+        {% else %}
+            <h1>{{ core_page.page_title }}</h1>
+            <p>this is home.html - home</p>
+            <p>{{ core_page.hero_description }}</p>
+        {% endif %}
+    </header>
+
+
+    <div class="max-w-3xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-sky-700">Hello from Tailwind</h1>
+        <p class="mt-4 text-gray-700">
+        Tailwind CSS is now loaded from your local static folder.
+        </p>
+    </div>
+
+
+
+
+    <main>
+        {{ core_page.main_content|safe }}
+    </main>
+    {% if core_page.featured_image %}
+        <footer>
+            <img src="{{ core_page.featured_image.url }}" alt="Featured Image">
+        </footer>
+    {% endif %}
+</body>
+</html>
