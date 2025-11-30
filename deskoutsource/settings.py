@@ -31,12 +31,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w#op=v24nhzg)96-258xepj+oh^jf6ae@+68va(1290o@kn8=5'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['deskoutsource.local', 'www.deskoutsource.local']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -103,14 +103,11 @@ WSGI_APPLICATION = 'deskoutsource.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'deskoutsource_db',
-        'USER': 'deskuser',
-        'PASSWORD': 'AngGwapo@23',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASS'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
